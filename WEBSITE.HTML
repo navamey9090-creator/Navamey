@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Helen Portfolio | UI/UX Designer & Case Studies</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'background': '#e8eaf0',
+                        'primary': '#6366f1',
+                        'tertiary': '#7c3aed',
+                        'on-surface': '#1a1c1e',
+                        'on-surface-variant': '#4b5563',
+                        'brand-green': '#a3b899',
+                    },
+                    boxShadow: {
+                        'neo-raised': '6px 6px 12px rgba(0,0,0,0.08), -6px -6px 12px rgba(255,255,255,0.6)',
+                        'neo-pressed': 'inset 4px 4px 8px rgba(0,0,0,0.06), inset -4px -4px 8px rgba(255,255,255,0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #e8eaf0;
+            color: #1a1c1e;
+            overflow-x: hidden;
+        }
+        .outline-text {
+            color: transparent;
+            -webkit-text-stroke: 2px #1a1c1e;
+            opacity: 0.8;
+        }
+        .neo-raised {
+            background: #e8eaf0;
+            box-shadow: 6px 6px 12px rgba(0,0,0,0.08), -6px -6px 12px rgba(255,255,255,0.6);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .neo-raised:hover {
+            transform: translateY(-4px);
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.06), -10px -10px 20px rgba(255,255,255,0.8);
+        }
+        .neo-inset {
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.06), inset -4px -4px 8px rgba(255,255,255,0.5);
+        }
+        .neo-button-active {
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.06), inset -4px -4px 8px rgba(255,255,255,0.5) !important;
+            transform: translateY(1px) !important;
+        }
+        .polaroid {
+            background: white;
+            padding: 12px 12px 50px 12px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12), 0 10px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.8);
+            transform: rotate(-3deg);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: rotate(-3deg) translateY(0); }
+            50% { transform: rotate(-1deg) translateY(-15px); }
+        }
+        .reveal-hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            filter: blur(5px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: #6366f1;
+            z-index: 1000;
+        }
+        .magnetic-wrap { display: inline-block; transition: transform 0.3s; }
+        .ui-showcase-card {
+            background: white;
+            padding: 16px;
+            border-radius: 40px;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.1), -20px -20px 60px rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .view-section {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+    <div id="scroll-progress"></div>
+
+    <nav id="portfolio-nav" class="sticky top-0 z-50 bg-background/90 backdrop-blur-md px-8 py-6 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-xl font-bold">Helen Portfolio</div>
+            <div class="hidden md:flex gap-8 font-medium text-on-surface-variant">
+                <a href="#work" class="hover:text-primary transition-colors">Work</a>
+                <a href="#profile" class="hover:text-primary transition-colors">Profile</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="magnetic-wrap"><button class="p-2 neo-raised rounded-lg"><i data-lucide="bookmark" class="w-5 h-5"></i></button></div>
+                <div class="magnetic-wrap"><button class="p-2 neo-raised rounded-lg"><i data-lucide="link" class="w-5 h-5"></i></button></div>
+                <div class="magnetic-wrap"><button class="p-2 neo-raised rounded-lg"><i data-lucide="share-2" class="w-5 h-5"></i></button></div>
+                <button class="ml-4 px-6 py-2 neo-raised rounded-lg font-bold text-primary">Hire Me</button>
+            </div>
+        </div>
+    </nav>
+
+    <nav id="casestudy-nav" class="sticky top-0 z-50 bg-background/90 backdrop-blur-md w-full py-4 px-8 hidden border-b border-white/20 shadow-sm">
+        <div class="flex justify-between items-center w-full max-w-7xl mx-auto">
+            <button onclick="showView('portfolio')" class="flex items-center gap-2 font-bold text-on-surface hover:text-primary transition-colors py-2 px-4 rounded-xl neo-raised">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i> Back to Portfolio
+            </button>
+            <div class="text-2xl font-semibold text-primary" id="case-nav-title">Case Study</div>
+            <div class="hidden md:flex gap-6 font-semibold text-on-surface-variant">
+                <a class="hover:text-primary transition-colors" href="#case-hero-anchor">Overview</a>
+                <a class="hover:text-primary transition-colors" href="#case-research-anchor">Research</a>
+                <a class="hover:text-primary transition-colors" href="#case-design-anchor">Design System</a>
+                <a class="hover:text-primary transition-colors" href="#case-results-anchor">Results</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="portfolio-view" class="view-section">
+        <main class="max-w-7xl mx-auto px-8 py-20 space-y-32">
+            <section class="text-center space-y-8 reveal-hidden">
+                <p class="text-sm font-medium text-on-surface-variant">Available for new opportunities</p>
+                <h1 class="text-7xl md:text-9xl font-extrabold tracking-tighter leading-none">
+                    DESIGN<br><span class="outline-text">PORTFOLIO</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-xl text-on-surface-variant leading-relaxed">
+                    I specialize in building intuitive, high-performance interfaces that bridge the gap between complex functionality and seamless user experience.
+                </p>
+                <div class="flex justify-center gap-6 pt-4">
+                    <a href="#work" class="px-8 py-4 neo-raised rounded-2xl font-bold flex items-center gap-2">View Projects <i data-lucide="arrow-down" class="w-5 h-5"></i></a>
+                    <a href="#contact" class="px-8 py-4 neo-raised rounded-2xl font-bold flex items-center gap-2">Contact Me <i data-lucide="mail" class="w-5 h-5"></i></a>
+                </div>
+            </section>
+
+            <section id="profile" class="neo-raised rounded-[40px] p-12 md:p-20 reveal-hidden">
+                <div class="grid md:grid-cols-2 gap-20 items-center">
+                    <div class="flex justify-center">
+                        <div class="polaroid">
+                            <div class="w-72 h-72 bg-gray-300 grayscale rounded-sm overflow-hidden flex items-center justify-center">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Helen" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <h2 class="text-5xl font-extrabold italic skew-x-[-10deg]">ABOUT ME</h2>
+                        <p class="text-lg text-on-surface-variant">
+                            Hello, my name is Helen. I'm a <span class="font-bold">UI/UX Designer</span> with a background in <span class="font-bold">Graphic</span> and <span class="font-bold">Motion design</span>.
+                        </p>
+                        <p class="text-lg text-on-surface-variant">
+                            I'm focused on working with customers to solve problems, skilled in creating responsive prototypes, researching competitors, conducting user personas, user flows, and functional design solutions. Let's collaborate to foster our development together.
+                        </p>
+                        <div class="space-y-4 pt-4" id="contact">
+                            <div class="flex items-center gap-4 text-on-surface-variant"><i data-lucide="mail" class="w-5 h-5"></i> ole.zubchenko@gmail.com</div>
+                            <div class="flex items-center gap-4 text-on-surface-variant"><i data-lucide="globe" class="w-5 h-5"></i> behance.net/helena_zubchenko</div>
+                            <div class="flex items-center gap-4 text-on-surface-variant"><i data-lucide="linkedin" class="w-5 h-5"></i> linkedin.com/in/olena-zubchenko</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid md:grid-cols-3 gap-8 reveal-hidden">
+                <div class="neo-raised rounded-[32px] p-10 space-y-10">
+                    <h3 class="text-xl font-bold flex items-center gap-3"><i data-lucide="graduation-cap"></i> EDUCATION</h3>
+                    <div class="space-y-10">
+                        <div class="space-y-2">
+                            <p class="text-xs text-on-surface-variant">Apr 2024 - Nov 2024</p>
+                            <h4 class="font-bold">GoIT - start your career in IT</h4>
+                            <p class="text-sm text-on-surface-variant">UI/UX Designer</p>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-xs text-on-surface-variant">Sep 2014 - May 2018</p>
+                            <h4 class="font-bold">Kyiv National University of Technologies and Design (KNUTD)</h4>
+                            <p class="text-sm text-on-surface-variant">Bachelor's degree, Business Administration and Management</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="neo-raised rounded-[32px] p-10 space-y-10">
+                    <h3 class="text-xl font-bold flex items-center gap-3"><i data-lucide="clock"></i> EXPERIENCE</h3>
+                    <div class="space-y-10">
+                        <div class="space-y-2">
+                            <p class="text-xs text-on-surface-variant">2022 - Present</p>
+                            <h4 class="font-bold">FREELANCE | UI/UX DESIGNER</h4>
+                            <p class="text-sm text-on-surface-variant">Freelance work - Principle and Protopie, Low and high fidelity prototypes, Adaptive design, Typography.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-xs text-on-surface-variant">2018 - 2022</p>
+                            <h4 class="font-bold">KYIV TV CHANNEL | MOTION DESIGNER</h4>
+                            <p class="text-sm text-on-surface-variant">Worked on broadcast TV design graphics and screen saver configurations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="neo-raised rounded-[32px] p-10 space-y-6">
+                        <h3 class="text-xl font-bold flex items-center gap-3"><i data-lucide="languages"></i> LANGUAGES</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center"><span class="font-bold">English</span> <span class="text-xs text-on-surface-variant">Intermediate</span></div>
+                            <div class="flex justify-between items-center"><span class="font-bold">Ukrainian</span> <span class="text-xs text-on-surface-variant">Native</span></div>
+                        </div>
+                    </div>
+                    <div class="neo-raised rounded-[32px] p-10 space-y-6">
+                        <h3 class="text-xl font-bold flex items-center gap-3"><i data-lucide="layout"></i> SOFTWARE</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 font-bold"><span class="w-10 h-10 neo-raised rounded-lg flex items-center justify-center text-xs">Fg</span> Figma</div>
+                            <div class="flex items-center gap-4 font-bold"><span class="w-10 h-10 neo-raised rounded-lg flex items-center justify-center text-xs">Ps</span> Adobe Photoshop</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="work" class="text-center space-y-4 reveal-hidden">
+                <h2 class="text-5xl font-extrabold">Selected Work</h2>
+                <p class="text-on-surface-variant">A deep dive into my most recent and impactful case studies.</p>
+            </section>
+
+            <section class="space-y-32">
+                <div class="grid md:grid-cols-2 gap-20 items-center reveal-hidden">
+                    <div class="neo-raised rounded-[40px] p-8 aspect-[4/3] flex items-center justify-center">
+                        <div class="w-full h-full bg-indigo-100 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+                             <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800" alt="Doctor App" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <h3 class="text-4xl font-extrabold">Medoner Online Doctor Booking App</h3>
+                        <p class="text-on-surface-variant">A streamlined mobile platform enabling instant doctor discovery, verified reviews, and real-time appointment scheduling in a clean interface.</p>
+                        <button onclick="showView('medoner')" class="px-8 py-4 neo-raised rounded-2xl font-bold flex items-center gap-2 hover:text-primary transition-all">View Case Study <i data-lucide="arrow-up-right" class="w-5 h-5"></i></button>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-20 items-center reveal-hidden">
+                    <div class="space-y-8">
+                        <h3 class="text-4xl font-extrabold">Mental Health Wellness App</h3>
+                        <p class="text-on-surface-variant">An intuitive wellness dashboard integrating mood tracking, guided audio meditations, and visual progress tracking to encourage mindfulness.</p>
+                        <button onclick="showView('mindful')" class="px-8 py-4 neo-raised rounded-2xl font-bold flex items-center gap-2 hover:text-primary transition-all">View Case Study <i data-lucide="arrow-up-right" class="w-5 h-5"></i></button>
+                    </div>
+                    <div class="neo-raised rounded-[40px] p-8 aspect-[4/3] flex items-center justify-center">
+                        <div class="w-full h-full bg-emerald-50 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800" alt="Wellness App" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    <div id="medoner-view" class="view-section hidden">
+        <main class="max-w-7xl mx-auto px-6 py-12 space-y-32">
+            <div id="case-hero-anchor" class="absolute -mt-40"></div>
+            <section class="flex flex-col lg:flex-row items-center gap-16 reveal-hidden">
+                <div class="flex-1 space-y-8">
+                    <div class="inline-block px-4 py-2 rounded-full neo-inset text-primary font-bold text-xs uppercase tracking-widest">UX Case Study</div>
+                    <h1 class="text-6xl md:text-7xl font-bold text-on-surface leading-tight">Medoner</h1>
+                    <p class="text-2xl text-on-surface-variant">Healthcare at your fingertips.</p>
+                </div>
+                <div class="flex-1 w-full">
+                    <div class="ui-showcase-card bg-indigo-50/50">
+                         <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800" alt="App Mockup" class="w-full h-full object-cover rounded-[24px] shadow-sm"/>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center reveal-hidden">
+                <div class="neo-inset rounded-3xl p-12 bg-background">
+                    <img alt="Frustrated patient" class="rounded-2xl neo-raised w-full object-cover aspect-video mix-blend-luminosity opacity-80" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=600"/>
+                </div>
+                <div class="space-y-6">
+                    <h2 class="text-4xl font-bold text-on-surface">The Problem</h2>
+                    <p class="text-on-surface-variant text-lg">Patients struggled to find clear transparent pricing structural frameworks, experienced high user flow dropouts, and complex scheduling interfaces.</p>
+                </div>
+            </section>
+
+            <div id="case-design-anchor" class="absolute -mt-40"></div>
+            <section class="bg-background neo-inset p-12 rounded-[40px] reveal-hidden space-y-16">
+                <div class="text-center space-y-4">
+                    <h2 class="text-4xl font-bold text-on-surface">Medoner Design System</h2>
+                    <p class="text-on-surface-variant max-w-2xl mx-auto">Ensuring atomic scalability across mobile variants through clean component design rules and balanced color theory layouts.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <div class="space-y-8">
+                        <h3 class="text-xs font-black text-on-surface-variant uppercase tracking-widest">Typography Scale</h3>
+                        <div class="bg-background neo-raised p-8 rounded-3xl space-y-8">
+                            <div class="flex items-baseline gap-4 border-b border-white/20 pb-4">
+                                <span class="text-6xl font-extrabold text-primary">Aa</span>
+                                <div>
+                                    <h4 class="text-xl font-bold">Plus Jakarta Sans</h4>
+                                    <p class="text-xs text-on-surface-variant">Primary Font Family</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-[10px] font-bold text-primary tracking-wider uppercase">Heading 1 (Bold / 36px)</p>
+                                    <p class="text-3xl font-bold text-on-surface">Find Best Specialists</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-bold text-primary tracking-wider uppercase">Sub-Heading (Semi-Bold / 20px)</p>
+                                    <p class="text-lg font-semibold text-on-surface">Book Appoinment Online</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-bold text-primary tracking-wider uppercase">Body Paragraph (Regular / 15px)</p>
+                                    <p class="text-sm font-normal text-on-surface-variant leading-relaxed">Search through thousands of verified patient reviews and instantly reserve available appointment slots securely.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <h3 class="text-xs font-black text-on-surface-variant uppercase tracking-widest">Color Tokens</h3>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="p-4 bg-background neo-raised rounded-2xl flex flex-col gap-4">
+                                <div class="w-full h-16 rounded-xl bg-[#6366f1]"></div>
+                                <div>
+                                    <h4 class="font-bold text-sm">Primary Brand</h4>
+                                    <p class="text-xs text-on-surface-variant font-mono">#6366F1</p>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-background neo-raised rounded-2xl flex flex-col gap-4">
+                                <div class="w-full h-16 rounded-xl bg-[#7c3aed]"></div>
+                                <div>
+                                    <h4 class="font-bold text-sm">Tertiary Accent</h4>
+                                    <p class="text-xs text-on-surface-variant font-mono">#7C3AED</p>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-background neo-raised rounded-2xl flex flex-col gap-4">
+                                <div class="w-full h-16 rounded-xl bg-[#2e3040]"></div>
+                                <div>
+                                    <h4 class="font-bold text-sm">On-Surface Black</h4>
+                                    <p class="text-xs text-on-surface-variant font-mono">#2E3040</p>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-background neo-raised rounded-2xl flex flex-col gap-4">
+                                <div class="w-full h-16 rounded-xl bg-[#585a68]"></div>
+                                <div>
+                                    <h4 class="font-bold text-sm">Surface Variant Muted</h4>
+                                    <p class="text-xs text-on-surface-variant font-mono">#585A68</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="case-results-anchor" class="absolute -mt-40"></div>
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center reveal-hidden">
+                <div class="space-y-8">
+                    <h2 class="text-4xl font-bold">Impact & Results</h2>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="neo-raised p-8 rounded-3xl text-center bg-background">
+                            <div class="text-5xl font-bold text-primary mb-2">40%</div>
+                            <p class="text-xs font-bold text-on-surface-variant uppercase">Reduced Booking Time</p>
+                        </div>
+                        <div class="neo-raised p-8 rounded-3xl text-center bg-background">
+                            <div class="text-5xl font-bold text-primary mb-2">85%</div>
+                            <p class="text-xs font-bold text-on-surface-variant uppercase">User Retention Increase</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="neo-inset rounded-[40px] p-12 bg-white/30">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600" class="rounded-3xl shadow-2xl w-full object-cover aspect-square"/>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    <div id="mindful-view" class="view-section hidden">
+        <main class="max-w-7xl mx-auto px-6 py-12 space-y-32">
+            <div id="case-hero-anchor" class="absolute -mt-40"></div>
+            <section class="flex flex-col lg:flex-row items-center gap-16 reveal-hidden">
+                <div class="flex-1 space-y-8">
+                    <div class="inline-block px-4 py-2 rounded-full neo-inset text-tertiary font-bold text-xs uppercase tracking-widest">UX Case Study</div>
+                    <h1 class="text-6xl md:text-7xl font-bold text-on-surface leading-tight">Mindful</h1>
+                    <p class="text-2xl text-on-surface-variant">A mental wellness companion bringing clarity to routines.</p>
+                </div>
+                <div class="flex-1 w-full">
+                    <div class="ui-showcase-card bg-emerald-50/50">
+                         <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800" alt="Mindful App Preview" class="w-full h-full object-cover rounded-[24px] shadow-sm"/>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center reveal-hidden">
+                <div class="space-y-6">
+                    <h2 class="text-4xl font-bold text-on-surface">The Challenge</h2>
+                    <p class="text-on-surface-variant text-lg leading-relaxed">
+                        In today's fast-paced environment, managing stress is complicated. Users feel immediately overwhelmed by saturated health apps containing convoluted logging workflows. The objective was to cultivate emotional support through structural minimalism.
+                    </p>
+                </div>
+                <div class="bg-background shadow-neo-raised p-8 rounded-[32px] space-y-4">
+                    <h3 class="text-xl font-bold text-primary mb-2">Key Friction Points</h3>
+                    <ul class="space-y-3 text-on-surface-variant">
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-red-500">close</span> Overwhelming complex setup tracking grids</li>
+                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-sm text-red-500">close</span> Lack of localized modern personalized metrics</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div id="case-research-anchor" class="absolute -mt-40"></div>
+            <section class="space-y-12 reveal-hidden">
+                <h2 class="text-3xl font-bold text-on-surface text-center">Research Insights</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="neo-raised p-8 rounded-3xl text-center">
+                        <div class="text-5xl font-bold text-tertiary mb-2">78%</div>
+                        <p class="text-sm font-semibold text-on-surface-variant">Seek rapid interface relief</p>
+                    </div>
+                    <div class="neo-raised p-8 rounded-3xl text-center">
+                        <div class="text-5xl font-bold text-primary mb-2">64%</div>
+                        <p class="text-sm font-semibold text-on-surface-variant">Desire basic visual metrics</p>
+                    </div>
+                    <div class="neo-raised p-8 rounded-3xl text-center">
+                        <div class="text-5xl font-bold text-brand-green mb-2">82%</div>
+                        <p class="text-sm font-semibold text-on-surface-variant">Need complete aesthetic calm</p>
+                    </div>
+                </div>
+            </section>
+
+            <div id="case-design-anchor" class="absolute -mt-40"></div>
+            <section class="bg-background neo-inset p-12 rounded-[40px] reveal-hidden space-y-16">
+                <div class="text-center space-y-4">
+                    <h2 class="text-4xl font-bold text-on-surface">Design System: Silk</h2>
+                    <p class="text-on-surface-variant max-w-2xl mx-auto">Promoting friendly, minimalist geometric structures that reduce user anxieties instantly upon application loading cycles.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <div class="space-y-8">
+                        <h3 class="text-xs font-black text-on-surface-variant uppercase tracking-widest">Typography Definition</h3>
+                        <div class="bg-background neo-raised p-8 rounded-3xl space-y-6">
+                            <div class="flex items-baseline gap-4 border-b border-white/20 pb-4">
+                                <span class="text-6xl font-extrabold text-tertiary">Aa</span>
+                                <h4 class="text-xl font-bold">Plus Jakarta Sans</h4>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black text-on-surface-variant uppercase mb-2">Heading (Bold Style)</p>
+                                <p class="text-3xl font-bold text-on-surface">The quick brown fox</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black text-on-surface-variant uppercase mb-2">Body (Medium weight)</p>
+                                <p class="text-base font-medium text-on-surface-variant leading-relaxed">Jumps over the lazy dog and rests peacefully under the shade.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <h3 class="text-xs font-black text-on-surface-variant uppercase tracking-widest">Silk Color Matrix</h3>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="p-4 bg-background neo-raised rounded-2xl flex flex-col gap-4">
+                                <div class="w-full h-12 rounded-xl bg-[#e8eaf0] border border-white/40"></div>
+                                <span class="text-xs font-mono text-center">#E8EAF0</span>
+                            </div>
+                            <div class="p-4 bg-background neo-raised rounded-2xl flex flex-col gap-4">
+                                <div class="w-full h-12 rounded-xl bg-[#6366f1]"></div>
+                                <span class="text-xs font-mono text-center">#6366F1</span>
+                            </div>
+                            <div class="p-4 bg-background neo-raised rounded-2xl flex flex-col gap-4">
+                                <div class="w-full h-12 rounded-xl bg-[#a3b899]"></div>
+                                <span class="text-xs font-mono text-center">#A3B899</span>
+                            </div>
+                            <div class="p-4 bg-background neo-raised rounded-2xl flex flex-col gap-4">
+                                <div class="w-full h-12 rounded-xl bg-[#7c3aed]"></div>
+                                <span class="text-xs font-mono text-center">#7C3AED</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="text-xs font-black text-on-surface-variant uppercase tracking-widest text-center">Interactive Micro-Components</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 p-10 bg-background rounded-3xl neo-inset items-center justify-items-center">
+                        <button class="px-8 py-3 rounded-xl neo-raised text-primary font-bold w-full text-xs">Start Session</button>
+                        <button class="px-8 py-3 rounded-xl neo-inset text-on-surface-variant font-medium w-full text-xs">Active state</button>
+                        <div class="w-12 h-12 rounded-full neo-raised flex items-center justify-center text-primary"><i data-lucide="play" class="w-4 h-4"></i></div>
+                        <div class="w-full bg-background neo-inset rounded-xl py-2 px-4 text-xs text-on-surface-variant/60">Search meditations...</div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="case-results-anchor" class="absolute -mt-40"></div>
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-hidden">
+                <div class="neo-raised p-10 rounded-3xl text-center space-y-2">
+                    <div class="text-5xl font-bold text-primary">4.8/5</div>
+                    <p class="font-bold text-on-surface-variant text-xs uppercase tracking-wider">App Store Rating</p>
+                </div>
+                <div class="neo-raised p-10 rounded-3xl text-center space-y-2">
+                    <div class="text-5xl font-bold text-brand-green">+45%</div>
+                    <p class="font-bold text-on-surface-variant text-xs uppercase tracking-wider">Daily Engagement Metrics</p>
+                </div>
+                <div class="neo-raised p-10 rounded-3xl text-center space-y-2">
+                    <div class="text-5xl font-bold text-tertiary">3.5m</div>
+                    <p class="font-bold text-on-surface-variant text-xs uppercase tracking-wider">Completed Sessions</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="mt-32 border-t-2 border-white/20 bg-background/50 backdrop-blur-sm p-20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-2xl font-bold">Helen Portfolio</div>
+            <div class="flex gap-10 font-bold text-on-surface-variant">
+                <a href="#" class="hover:text-primary transition-colors">Behance</a>
+                <a href="#" class="hover:text-primary transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-primary transition-colors">Email</a>
+            </div>
+            <div class="text-sm text-on-surface-variant">
+                © 2026 Helen Design. Crafted with Neomorphism.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function showView(viewId) {
+            const portfolioView = document.getElementById('portfolio-view');
+            const medonerView = document.getElementById('medoner-view');
+            const mindfulView = document.getElementById('mindful-view');
+            
+            const portfolioNav = document.getElementById('portfolio-nav');
+            const casestudyNav = document.getElementById('casestudy-nav');
+            const caseNavTitle = document.getElementById('case-nav-title');
+
+            // Hide everything securely
+            portfolioView.classList.add('hidden');
+            medonerView.classList.add('hidden');
+            mindfulView.classList.add('hidden');
+            portfolioNav.classList.add('hidden');
+            casestudyNav.classList.add('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
+            // Activate specific targeted view components
+            if(viewId === 'portfolio') {
+                portfolioView.classList.remove('hidden');
+                portfolioNav.classList.remove('hidden');
+            } else if(viewId === 'medoner') {
+                medonerView.classList.remove('hidden');
+                casestudyNav.classList.remove('hidden');
+                caseNavTitle.innerText = "Medoner - Case Study";
+            } else if(viewId === 'mindful') {
+                mindfulView.classList.remove('hidden');
+                casestudyNav.classList.remove('hidden');
+                caseNavTitle.innerText = "Mindful - Case Study";
+            }
+
+            refreshRevealState();
+        }
+
+        function refreshRevealState() {
+            setTimeout(() => {
+                const elements = document.querySelectorAll('.reveal-hidden');
+                elements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        el.classList.add('reveal-visible');
+                    }
+                });
+            }, 50);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const wraps = document.querySelectorAll('.magnetic-wrap');
+            wraps.forEach(wrap => {
+                wrap.addEventListener('mousemove', (e) => {
+                    const btn = wrap.querySelector('button');
+                    if(!btn) return;
+                    const rect = wrap.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                wrap.addEventListener('mouseleave', () => {
+                    const btn = wrap.querySelector('button');
+                    if(btn) btn.style.transform = '';
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                const progressEl = document.getElementById('scroll-progress');
+                if(progressEl) progressEl.style.width = scrolled + '%';
+            });
+
+            const globalObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-visible');
+                    }
+                });
+            }, { threshold: 0.05 });
+
+            document.querySelectorAll('.reveal-hidden').forEach(el => globalObserver.observe(el));
+        });
+    </script>
+</body>
+</html>
